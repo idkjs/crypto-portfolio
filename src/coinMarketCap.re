@@ -27,7 +27,7 @@ let to_entry = (q, o) => o;
 let get = (~quote=USD, ()) => {
   let suffix = "_" ++ currency_str(quote);
   CoinMarketCap_t.(
-    Core_extended.Shell.run_full("curl", [api_url(quote)])
+    Shell.run_full("curl", [api_url(quote)])
     |> String.substr_replace_all(~pattern=suffix, ~with_="")
     |> String.substr_replace_all(~pattern="24h_volume", ~with_="volume_24h")
     |> CoinMarketCap_j.return_of_string

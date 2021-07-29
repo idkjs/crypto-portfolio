@@ -45,13 +45,12 @@ let prepare_report = (cmc, assets) => {
   let (sum, d1h, d24h, d7d) =
     List.fold(
       ~f=
-        ((sum, d1h, d24h, d7d), e) =>
-          (
-            sum +. e.value,
-            d1h +. e.value /. (1. +. e.o.percent_change_1h /. 100.),
-            d24h +. e.value /. (1. +. e.o.percent_change_24h /. 100.),
-            d7d +. e.value /. (1. +. e.o.percent_change_7d /. 100.),
-          ),
+        ((sum, d1h, d24h, d7d), e) => (
+          sum +. e.value,
+          d1h +. e.value /. (1. +. e.o.percent_change_1h /. 100.),
+          d24h +. e.value /. (1. +. e.o.percent_change_24h /. 100.),
+          d7d +. e.value /. (1. +. e.o.percent_change_7d /. 100.),
+        ),
       ~init=(0., 0., 0., 0.),
       assets,
     );
@@ -85,11 +84,11 @@ let reorder = desc =>
           );
           exit(1);
         };
-      let cmp = (a, b) =>
+      let compare = (a, b) =>
         Stdlib.compare(get(a), get(b)) * (if (desc) {(-1)} else {1});
       (
         rep => {
-          let assets = List.sort(rep.assets);
+          let assets = List.sort(~compare, rep.assets);
           {...rep, assets};
         }
       );
@@ -193,7 +192,7 @@ let spec =
   );
 
 let command =
-  Command.basic(
+  Command.basic_spec(
     ~summary="Report Cryptocurrency Portfolio Value",
     ~readme,
     spec,

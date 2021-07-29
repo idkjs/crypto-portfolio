@@ -1,7 +1,7 @@
 (executable
  (modes byte exe)
  (name main)
- (libraries core atdgen yojson))
+ (libraries core atdgen yojson shell))
 
 (env
  (dev
