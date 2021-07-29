@@ -29,6 +29,6 @@ push-bot: bot
 
 .PHONY: crypto-portfolio
 crypto-portfolio:
-	cd src ; dune build ./src/main.exe
+	dune build ./src/main.exe
 	rm -f crypto-portfolio
-	ln -s src/_build/default/main.exe crypto-portfolio
+	ln -s _build/default/src/main.exe crypto-portfolio
