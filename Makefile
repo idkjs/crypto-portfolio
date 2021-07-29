@@ -14,7 +14,7 @@ atd-clean:
 	rm -f src/portfolioSpec_[tj].ml*
 
 clean:
-	rm -rf crypto-portfolio src/_build src/.merlin bot/report
+	rm -rf crypto-portfolio _build src/.merlin bot/report
 
 build:
 	mkdir build
