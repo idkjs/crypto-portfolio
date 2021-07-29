@@ -1,0 +1,9 @@
+(executable
+ (modes byte exe)
+ (name main)
+ (libraries core atdgen yojson))
+
+(env
+ (dev
+  (flags
+   (:standard -warn-error -A -w -53-27))))
